@@ -11,8 +11,9 @@ import CheckoutSideMenu from "../../Components/CheckoutSideMenu";
 import { SignUp } from "../SignUp";
 import { SignOut } from "../SignOut";
 import "./App.css";
+import { useAuth } from "../../Hooks/useAuth";
 
-const AppRoutes = () => {
+const AppRoutes = ({ logIn, logOut, addAccount, user }) => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
     { path: "/clothes", element: <Home /> },
@@ -20,14 +21,14 @@ const AppRoutes = () => {
     { path: "/furnitures", element: <Home /> },
     { path: "/toys", element: <Home /> },
     { path: "/othes", element: <Home /> },
-    { path: "/my-account", element: <MyAccount /> },
+    { path: "/my-account", element: <MyAccount activeUser={user} /> },
     { path: "/my-order", element: <MyOrder /> },
     { path: "/my-orders", element: <MyOrders /> },
     { path: "/my-orders/last", element: <MyOrder /> },
     { path: "/my-orders/:id", element: <MyOrder /> },
-    { path: "/sign-in", element: <SignIn /> },
-    { path: "/sign-up", element: <SignUp /> },
-    { path: "/sign-out", element: <SignOut /> },
+    { path: "/sign-in", element: <SignIn logIn={logIn} /> },
+    { path: "/sign-up", element: <SignUp addAccount={addAccount} /> },
+    { path: "/sign-out", element: <SignOut logOut={logOut} /> },
     { path: "/*", element: <NotFound /> },
   ]);
 
@@ -35,11 +36,13 @@ const AppRoutes = () => {
 };
 
 const App = () => {
+  const auth = useAuth();
+
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
-        <AppRoutes />
-        <Navbar />
+        <AppRoutes {...auth} />
+        <Navbar activeUser={auth.user} />
         <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingCartProvider>

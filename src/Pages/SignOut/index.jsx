@@ -1,13 +1,16 @@
 import Layout from "../../Components/Layout";
+import { useNavigate } from "react-router-dom";
 
-const SignOut = () => {
+const SignOut = ({ logOut }) => {
+  const navigate = useNavigate();
   const logout = () => {
-    console.log("Log out");
+    logOut();
+    navigate("/sign-in");
   };
 
   return (
     <Layout>
-      <h1 className="my-4">Sign Out</h1>
+      <h1 className="my-4 font-medium text-xl">Sign Out</h1>
       <form onSubmit={logout} className="space-y-4 mt-4">
         <label className="block text-gray-600 text-center">
           ¿Seguro que quieres salir?
