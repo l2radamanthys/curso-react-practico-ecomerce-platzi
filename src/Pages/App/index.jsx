@@ -12,6 +12,7 @@ import { SignUp } from "../SignUp";
 import { SignOut } from "../SignOut";
 import "./App.css";
 import { useAuth } from "../../Hooks/useAuth";
+import { AuthRequired } from "../../Components/AuthRequired";
 
 const AppRoutes = ({ logIn, logOut, addAccount, user, isAuthenticated }) => {
   let routes = useRoutes([
@@ -27,14 +28,56 @@ const AppRoutes = ({ logIn, logOut, addAccount, user, isAuthenticated }) => {
     },
     { path: "/toys", element: <Home isAuthenticated={isAuthenticated} /> },
     { path: "/othes", element: <Home isAuthenticated={isAuthenticated} /> },
-    { path: "/my-account", element: <MyAccount activeUser={user} /> },
-    { path: "/my-order", element: <MyOrder /> },
-    { path: "/my-orders", element: <MyOrders /> },
-    { path: "/my-orders/last", element: <MyOrder /> },
-    { path: "/my-orders/:id", element: <MyOrder /> },
+    {
+      path: "/my-account",
+      element: (
+        <AuthRequired isAuthenticated={isAuthenticated}>
+          <MyAccount activeUser={user} />
+        </AuthRequired>
+      ),
+    },
+    {
+      path: "/my-order",
+      element: (
+        <AuthRequired isAuthenticated={isAuthenticated}>
+          <MyOrder />
+        </AuthRequired>
+      ),
+    },
+    {
+      path: "/my-orders",
+      element: (
+        <AuthRequired isAuthenticated={isAuthenticated}>
+          <MyOrders />
+        </AuthRequired>
+      ),
+    },
+    {
+      path: "/my-orders/last",
+      element: (
+        <AuthRequired isAuthenticated={isAuthenticated}>
+          <MyOrder />
+        </AuthRequired>
+      ),
+    },
+    {
+      path: "/my-orders/:id",
+      element: (
+        <AuthRequired isAuthenticated={isAuthenticated}>
+          <MyOrder />
+        </AuthRequired>
+      ),
+    },
     { path: "/sign-in", element: <SignIn logIn={logIn} /> },
     { path: "/sign-up", element: <SignUp addAccount={addAccount} /> },
-    { path: "/sign-out", element: <SignOut logOut={logOut} /> },
+    {
+      path: "/sign-out",
+      element: (
+        <AuthRequired isAuthenticated={isAuthenticated}>
+          <SignOut logOut={logOut} />
+        </AuthRequired>
+      ),
+    },
     { path: "/*", element: <NotFound /> },
   ]);
 
