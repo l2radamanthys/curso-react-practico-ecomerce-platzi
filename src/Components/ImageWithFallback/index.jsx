@@ -3,7 +3,7 @@ import { useState } from "react";
 // Componente de imagen con fallback
 const ImageWithFallback = ({
   src,
-  fallback = "https://",
+  fallback = "../../public/default-image.jpg",
   alt = "Imagen",
   className = "",
   ...props
