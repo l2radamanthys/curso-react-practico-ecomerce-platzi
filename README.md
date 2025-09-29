@@ -8,3 +8,15 @@ Este proyecto es una práctica de resolucion de issues del curso de React, donde
 - #13 [Navbar dinamico](https://github.com/platzi/curso-react-practico/issues/13)
 - #14 [Proteccion de Rutas](https://github.com/platzi/curso-react-practico/issues/14)
 - #15 [Responsive Design para Shopii (opcional)](https://github.com/platzi/curso-react-practico/issues/15)
+
+## Fake API
+
+Para simular una API RESTful, se ha utilizado **json-server** junto con un archivo `db.json` que contiene los datos de productos y usuarios. Esto permite realizar operaciones de lectura en los datos de manera sencilla sin requerir un endpoint.
+
+La API falsa se ejecuta en el puerto `3000` y se puede iniciar con el siguiente comando:
+
+```bash
+npx json-server db.json
+```
+
+Exponiendo el listado de productos en `http://localhost:3000/products`
