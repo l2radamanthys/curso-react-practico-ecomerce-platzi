@@ -1,12 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ onSubmitEvent }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
 
   const onSubmit = (event) => {
     event.preventDefault();
     onSubmitEvent({ email, password });
+  };
+
+  const onSignUp = () => {
+    navigate("/sign-up");
   };
 
   return (
@@ -48,7 +54,19 @@ const LoginForm = ({ onSubmitEvent }) => {
         type="submit"
         className="bg-black text-white rounded-lg w-80 p-4 mb-4 hover:bg-gray-800"
       >
-        Login
+        sign In
+      </button>
+
+      <div className="text-center text-sm underline pb-2">
+        <a href="">Forgot you password</a>
+      </div>
+
+      <button
+        type="button"
+        className="border-black border text-black bg-white rounded-lg w-80 p-4 mb-4 hover:border-gray-800"
+        onClick={onSignUp}
+      >
+        sign Up
       </button>
     </form>
   );

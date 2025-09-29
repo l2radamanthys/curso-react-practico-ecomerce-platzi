@@ -66,7 +66,7 @@ const AccountForm = ({ onSubmitEvent }) => {
           type="submit"
           className="bg-black text-white rounded-lg w-80 p-4 mb-4 hover:bg-gray-800"
         >
-          Create
+          Create Account
         </button>
       </form>
     </>
