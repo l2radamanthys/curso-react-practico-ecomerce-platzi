@@ -13,14 +13,20 @@ import { SignOut } from "../SignOut";
 import "./App.css";
 import { useAuth } from "../../Hooks/useAuth";
 
-const AppRoutes = ({ logIn, logOut, addAccount, user }) => {
+const AppRoutes = ({ logIn, logOut, addAccount, user, isAuthenticated }) => {
   let routes = useRoutes([
-    { path: "/", element: <Home /> },
-    { path: "/clothes", element: <Home /> },
-    { path: "/electronics", element: <Home /> },
-    { path: "/furnitures", element: <Home /> },
-    { path: "/toys", element: <Home /> },
-    { path: "/othes", element: <Home /> },
+    { path: "/", element: <Home isAuthenticated={isAuthenticated} /> },
+    { path: "/clothes", element: <Home isAuthenticated={isAuthenticated} /> },
+    {
+      path: "/electronics",
+      element: <Home isAuthenticated={isAuthenticated} />,
+    },
+    {
+      path: "/furnitures",
+      element: <Home isAuthenticated={isAuthenticated} />,
+    },
+    { path: "/toys", element: <Home isAuthenticated={isAuthenticated} /> },
+    { path: "/othes", element: <Home isAuthenticated={isAuthenticated} /> },
     { path: "/my-account", element: <MyAccount activeUser={user} /> },
     { path: "/my-order", element: <MyOrder /> },
     { path: "/my-orders", element: <MyOrders /> },
@@ -42,7 +48,7 @@ const App = () => {
     <ShoppingCartProvider>
       <BrowserRouter>
         <AppRoutes {...auth} />
-        <Navbar activeUser={auth.user} />
+        <Navbar activeUser={auth.user} isAuthenticated={auth.isAuthenticated} />
         <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingCartProvider>

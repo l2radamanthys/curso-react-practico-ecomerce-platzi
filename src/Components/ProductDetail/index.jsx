@@ -6,7 +6,6 @@ import "./styles.css";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-
   return (
     <aside
       className={`${

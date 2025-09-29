@@ -56,7 +56,7 @@ const Card = (data) => {
           alt={data.data.title}
         />
 
-        {renderIcon(data.data.id)}
+        {data.isAuthenticated && renderIcon(data.data.id)}
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{data.data.title}</span>

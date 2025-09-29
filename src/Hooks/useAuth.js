@@ -36,11 +36,11 @@ const useAuth = () => {
     setUser(null);
   };
 
-  const isLogin = Boolean(user);
+  const isAuthenticated = Boolean(user);
 
   return {
     user,
-    isLogin,
+    isAuthenticated,
     addAccount,
     logIn,
     logOut,
